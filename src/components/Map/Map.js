@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
-
+import { GoogleMapAPIKey } from '../../config';
 import './Map.css';
 
-const GoogleAPI = process.env.GOOGLE_API
+const GoogleAPI = process.env.GOOGLE_API || GoogleMapAPIKey;
 
 class GoogleMap extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class GoogleMap extends Component {
     };
     this.onMouseover = this.onMouseover.bind(this);
     this.onMouseout = this.onMouseout.bind(this);
-  }
+  };
 
   onMouseover(props, marker) {
     this.setState({
@@ -30,14 +30,14 @@ class GoogleMap extends Component {
   };
 
   render() {
-    const { image, name } = this.props.restaurant
+    const { image, name, location } = this.props.restaurant
     return (
       <div id='map'>
         <Map zoom={15} google={this.props.google} initialCenter={{
-          lat: this.props.latitude,
-          lng: this.props.longitude
+          lat: location[1],
+          lng: location[0]
         }}>
-          <Marker onMouseover={this.onMouseover} onMouseout={this.onMouseout} onClick={this.onMouseover}/>
+          <Marker onMouseover={this.onMouseover} onMouseout={this.onMouseout} onClick={this.onMouseover} />
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
@@ -52,8 +52,6 @@ class GoogleMap extends Component {
     );
   }
 }
-
-
 
 export default GoogleApiWrapper({
   apiKey: (GoogleAPI),

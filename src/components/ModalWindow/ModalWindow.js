@@ -7,7 +7,6 @@ const ModalWindow = ({ chosenRestaurant, showModal, handleModal, modalHide }) =>
   if (!chosenRestaurant.location) return null;
 
   const restaurant = chosenRestaurant;
-  const location = chosenRestaurant.location;
   const restaurantTags = chosenRestaurant.tags ?
     restaurant.tags.map((tag) => {
       return (
@@ -25,7 +24,7 @@ const ModalWindow = ({ chosenRestaurant, showModal, handleModal, modalHide }) =>
               <p>{restaurant.description}</p>
             </Row>
             <Row>
-              <Map restaurant={restaurant} latitude={location[1]} longitude={location[0]} />
+              <Map restaurant={restaurant} />
             </Row>
             <Row className='row3'>
               <h5>Tags</h5></Row>
