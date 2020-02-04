@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
-import { GoogleMapAPIKey } from '../../config';
+
 import './Map.css';
 
-const GoogleAPI = process.env.GOOGLE_API || GoogleMapAPIKey;
+const GoogleAPI = process.env.GOOGLE_API
 
 class GoogleMap extends Component {
   constructor(props) {
